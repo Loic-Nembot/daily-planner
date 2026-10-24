@@ -1,4 +1,5 @@
 console.log("app.js is loaded");
+    let editingId = null;
 
     /* const task = {
         id : 1,
@@ -52,7 +53,7 @@ console.log("app.js is loaded");
         const table = document.createElement("table");
 
         const headerRow = document.createElement("tr");
-        for(const title of ["Nr.", " Time ", " Activity ", " State "]) {
+        for(const title of ["Nr.", " Time ", " Activity ", " State ", "Action"]) {
         const th = document.createElement("th");
         th.textContent = title;
         headerRow.append(th);
@@ -78,10 +79,33 @@ console.log("app.js is loaded");
             const doneCell = document.createElement("td");
             doneCell.textContent = task.done ? " done " : " open " ;
             row.append(doneCell);
+
+            const buttonCell = document.createElement("td");
+            const button = document.createElement("button");
+            button.textContent = task.done ? "Undo" : "Done";
+            button.onclick = () => toggletask(task.id);
+            buttonCell.append(button);
+            row.append(buttonCell);
             table.append(row);
 
         }
         app.append(table);
+    }
+
+    function toggletask(id) {
+        for(const task of tasks) {
+            if (task.id === id) {
+                task.done = !task.done;
+            }
+        }
+        renderTable();
+    }
+    function startEdit(id) {
+
+    }
+
+    function savetask() {
+        
     }
 renderTable();
 console.log(countDone(tasks));
