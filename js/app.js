@@ -43,5 +43,22 @@ console.log("app.js is loaded");
     ];
 
     const countDone = tasks => tasks.filter(task => task.done).length;
+
+    function renderTable() {
  
+        const app = document.getElementById("app");
+        app.replaceChildren();
+
+        const table = document.createElement("table");
+
+        const headerRow = document.createElement("tr");
+         for(const title of ["Nr.", " Time ", " Activity ", " State "]) {
+            const th = document.createElement("th");
+            th.textContent = title;
+            headerRow.append(th);
+         }
+         table.append(headerRow);
+         app.append(table);
+    }
+ renderTable();
  console.log(countDone(tasks));
